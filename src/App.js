@@ -1,23 +1,66 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import { Switch, Route } from "react-router-dom";
+import axios from "axios";
+import "./App.css";
+import Home from "./Components/Home";
+import NavBar from "./Components/NavBar";
+import Transactions from "./Components/Transactions";
+import NewTransaction from "./Components/NewTransaction";
+import { apiURL } from "./Util/apiURL";
+const API = apiURL();
 
 function App() {
+  const [transactions, setTransactions] = useState([]);
+
+  const fetchTransactions = async () => {
+    // debugger
+    try {
+      const res = await axios.get(`${API}/transactions`);
+      setTransactions(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const addTransaction = async (newTransaction) => {
+    try {
+      const res = await axios.post(`${API}/transactions`, newTransaction);
+      setTransactions([...transactions, res.data]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchTransactions();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <NavBar />
+        <main>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route exact path="/transactions">
+              <Transactions transactions={transactions} />
+            </Route>
+            <Route exact path="/transactions/new">
+              <NewTransaction addTransaction={addTransaction} />
+            </Route>
+            {/* <Route exact path="/logs/:index">
+            <Show logs={logs} 
+            deleteLog={deleteLog}
+             />
+          </Route>
+          <Route path="*">
+            <FourOFour />
+          </Route> */}
+          </Switch>
+        </main>
+      </div>
     </div>
   );
 }
