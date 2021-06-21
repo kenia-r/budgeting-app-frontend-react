@@ -36,7 +36,7 @@ export default function ShowTransaction({ deleteTransaction }) {
         <h5 className="card-title">Name: {transaction.name}</h5>
         <p className="card-text">Amount: {transaction.amount}</p>
         <h6 className="card-text">From: {transaction.from}</h6>
-        <div class="btn-group" role="group" aria-label="Basic outlined button group">
+        <div className="btn-group" role="group" aria-label="Basic outlined button group">
           <Link to={`/transactions/${id}/edit`}>
             <button className="btn btn-outline-primary">Edit</button>
           </Link>
