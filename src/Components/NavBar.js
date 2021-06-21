@@ -7,8 +7,6 @@ export default function NavBar() {
             <NavLink to="/">Home</NavLink>
             <NavLink to="/transactions">Transactions Index</NavLink>
             <NavLink to="/transactions/new">New Transaction</NavLink>
-            {/* <NavLink to="/transactions/edit"></NavLink>
-            <NavLink to="*"></NavLink> */}
         </nav>
     )
 }

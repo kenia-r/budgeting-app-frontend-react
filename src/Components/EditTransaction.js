@@ -1,27 +1,46 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useParams, Link, useHistory } from "react-router-dom";
+import { apiURL } from "../Util/apiURL";
 
-function NewTransaction({ addTransaction }) {
+const API = apiURL();
+
+export default function EditTransaction(props) {
+  let { id } = useParams();
   let history = useHistory();
-  const [ transaction, setTransaction ] = useState({
+
+  const [transaction, setTransaction] = useState({
     date: new Date().toLocaleDateString('en-CA'),
     name: "",
     amount: 0,
     from: "",
   });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    await addTransaction(transaction);
-    history.push("/transactions");
-  };
-
   const handleChange = (e) => {
     setTransaction({ ...transaction, [e.target.id]: e.target.value });
   };
 
+  const fetchTransaction = async () => {
+    try {
+      const res = await axios.get(`${API}/transactions/${id}`);
+      setTransaction(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchTransaction();
+  }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await props.updateTransaction(transaction, id);
+    history.push(`/transactions/${id}`);
+  };
+
   return (
-    <div className="New">
+    <div className="Edit">
       <form onSubmit={handleSubmit}>
         <label htmlFor="date">
           Date
@@ -63,10 +82,11 @@ function NewTransaction({ addTransaction }) {
             value={transaction.from}
           ></input>
         </label>
-        <button type="submit">Submit</button>
+        <button type="submit">Edit</button>
       </form>
+      <Link to={`/transactions/${id}`}>
+        <button>Go Back to Transaction</button>
+      </Link>
     </div>
   );
 }
-
-export default NewTransaction;
