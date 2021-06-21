@@ -50,12 +50,12 @@ function App() {
             <Route exact path="/transactions/new">
               <NewTransaction addTransaction={addTransaction} />
             </Route>
-            <Route exact path="/transactions/:id">
+            {/* <Route exact path="/transactions/:id">
               <Show
                 transactions={transactions}
                 deleteTransaction={deleteTransaction}
               />
-            </Route>
+            </Route> */}
             {/* <Route path="*">
               <FourOFour />
             </Route> */}
