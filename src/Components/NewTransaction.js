@@ -1,6 +1,5 @@
-import React from "react";
-import { useState } from "react";
-import { withRouter, useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 function NewTransaction({ addTransaction }) {
   let history = useHistory();
@@ -21,7 +20,6 @@ function NewTransaction({ addTransaction }) {
     setTransaction({ ...transaction, [e.target.id]: e.target.value });
   };
 
-  //   const { date, name, amount, from } = transaction;
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -71,4 +69,4 @@ function NewTransaction({ addTransaction }) {
   );
 }
 
-export default withRouter(NewTransaction);
+export default NewTransaction;
