@@ -49,7 +49,7 @@ function App() {
 
   const deleteTransaction = async (id) => {
     try {
-      await axios.delete(`${API}/logs/${id}`);
+      await axios.delete(`${API}/transactions/${id}`);
       const dummyState = [...transactions];
       dummyState.splice(id, 1);
       setTransactions(dummyState);
