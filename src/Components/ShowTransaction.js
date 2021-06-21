@@ -30,18 +30,25 @@ export default function ShowTransaction({ deleteTransaction }) {
   };
 
   return (
-    <div>
-      <h3>Date: {transaction.date}</h3>
-      <h3>Name: {transaction.name}</h3>
-      <h3>Amount: {transaction.amount}</h3>
-      <h3>From: {transaction.from}</h3>
-      <Link to={`/transactions/${id}/edit`}>
-        <button>Edit</button>
-      </Link>
-      <button onClick={handleDelete}>Delete</button>
-      <Link to={`/transactions`}>
-        <button>Go Back to Transactions</button>
-      </Link>
+    <div className="card">
+      <h3 className="card-header">Date: {transaction.date}</h3>
+      <div className="card-body">
+        <h5 className="card-title">Name: {transaction.name}</h5>
+        <p className="card-text">Amount: {transaction.amount}</p>
+        <h6 className="card-text">From: {transaction.from}</h6>
+        <div class="btn-group" role="group" aria-label="Basic outlined button group">
+          <Link to={`/transactions/${id}/edit`}>
+            <button className="btn btn-outline-primary">Edit</button>
+          </Link>
+          <button onClick={handleDelete} className="btn btn-outline-primary">
+            Delete
+          </button>
+          <br />
+          <Link to={`/transactions`}>
+            <button className="btn btn-outline-primary">Go Back</button>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }

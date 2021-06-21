@@ -9,10 +9,10 @@ export default function Transactions({ transactions }) {
             return total += Number(transaction.amount)
         })}
       <h1> Bank Account Total: {total || 0} </h1>
-      <ul>
+      <ul className="list-group list-group-flush">
         {transactions.map((transaction, index) => {
           return (
-            <li key={index}>
+            <li key={index} className="list-group-item">
               {transaction.date}{" "}
               <Link to={`/transactions/${index}`}>{transaction.name}</Link>{" "}
               {transaction.amount}

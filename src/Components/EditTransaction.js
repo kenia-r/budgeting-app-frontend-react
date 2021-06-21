@@ -41,7 +41,7 @@ export default function EditTransaction({ updateTransaction }) {
 
   return (
     <div className="Edit">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="new-form">
         <label htmlFor="date">
           Date
           <input
@@ -50,6 +50,7 @@ export default function EditTransaction({ updateTransaction }) {
             type="date"
             placeholder="Date"
             value={transaction.date}
+            className="form-control"
           ></input>
         </label>
         <label htmlFor="name">
@@ -60,6 +61,7 @@ export default function EditTransaction({ updateTransaction }) {
             type="text"
             placeholder="Name"
             value={transaction.name}
+            className="form-control"
           ></input>
         </label>
         <label htmlFor="amount">
@@ -70,6 +72,7 @@ export default function EditTransaction({ updateTransaction }) {
             type="number"
             placeholder="Amount"
             value={transaction.amount}
+            className="form-control"
           ></input>
         </label>
         <label htmlFor="from">
@@ -80,12 +83,15 @@ export default function EditTransaction({ updateTransaction }) {
             type="text"
             placeholder="From"
             value={transaction.from}
+            className="form-control"
           ></input>
         </label>
-        <button type="submit">Edit</button>
+        <br/>
+        <button type="submit" className="btn btn-light">Edit</button>
       </form>
+      <br/>
       <Link to={`/transactions/${id}`}>
-        <button>Go Back to Transaction</button>
+        <button className="btn btn-light">Go Back to Transaction</button>
       </Link>
     </div>
   );

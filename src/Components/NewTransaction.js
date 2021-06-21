@@ -21,8 +21,8 @@ function NewTransaction({ addTransaction }) {
   };
 
   return (
-    <div className="New">
-      <form onSubmit={handleSubmit}>
+    <div className="new">
+      <form onSubmit={handleSubmit} className="new-form">
         <label htmlFor="date">
           Date
           <input
@@ -31,6 +31,7 @@ function NewTransaction({ addTransaction }) {
             type="date"
             placeholder="Date"
             value={transaction.date}
+            className="form-control"
           ></input>
         </label>
         <label htmlFor="name">
@@ -41,6 +42,7 @@ function NewTransaction({ addTransaction }) {
             type="text"
             placeholder="Name"
             value={transaction.name}
+            className="form-control"
           ></input>
         </label>
         <label htmlFor="amount">
@@ -51,6 +53,7 @@ function NewTransaction({ addTransaction }) {
             type="number"
             placeholder="Amount"
             value={transaction.amount}
+            className="form-control"
           ></input>
         </label>
         <label htmlFor="from">
@@ -61,9 +64,11 @@ function NewTransaction({ addTransaction }) {
             type="text"
             placeholder="From"
             value={transaction.from}
+            className="form-control"
           ></input>
         </label>
-        <button type="submit">Submit</button>
+        <br/>
+        <button type="submit" className="btn btn-light">Submit</button>
       </form>
     </div>
   );
