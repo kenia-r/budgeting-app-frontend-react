@@ -31,10 +31,10 @@ export default function ShowTransaction({ deleteTransaction }) {
 
   return (
     <div>
-      <h3>{transaction.date}</h3>
-      <h3>{transaction.name}</h3>
-      <h3>{transaction.amount}</h3>
-      <h3>{transaction.from}</h3>
+      <h3>Date: {transaction.date}</h3>
+      <h3>Name: {transaction.name}</h3>
+      <h3>Amount: {transaction.amount}</h3>
+      <h3>From: {transaction.from}</h3>
       <Link to={`/transactions/${id}/edit`}>
         <button>Edit</button>
       </Link>

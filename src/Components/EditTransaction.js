@@ -5,20 +5,16 @@ import { apiURL } from "../Util/apiURL";
 
 const API = apiURL();
 
-export default function EditTransaction(props) {
+export default function EditTransaction({ updateTransaction }) {
   let { id } = useParams();
   let history = useHistory();
 
   const [transaction, setTransaction] = useState({
-    date: new Date().toLocaleDateString('en-CA'),
+    date: new Date().toLocaleDateString("en-CA"),
     name: "",
     amount: 0,
     from: "",
   });
-
-  const handleChange = (e) => {
-    setTransaction({ ...transaction, [e.target.id]: e.target.value });
-  };
 
   const fetchTransaction = async () => {
     try {
@@ -33,9 +29,13 @@ export default function EditTransaction(props) {
     fetchTransaction();
   }, []);
 
+  const handleChange = (e) => {
+    setTransaction({ ...transaction, [e.target.id]: e.target.value });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await props.updateTransaction(transaction, id);
+    await updateTransaction(transaction, id);
     history.push(`/transactions/${id}`);
   };
 
